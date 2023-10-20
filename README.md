@@ -12,12 +12,15 @@ To check that your computer support virtualization, you can issuse one of the fo
 egrep -c ‘(vmx |svm’) /proc/cpuinfo
 
 If this command returns the value 0, the cpu does not support hardware virtualization. If the command returns value 1 or greater, your cpu is capable of running virtualization software. The following screenshot shows the output of the
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/4f32df8e-0228-453b-96cd-c1664f7e2c32)
 
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/475b3993-dba7-4908-8552-c23f82b1681b)
 
 
  
 Another way to check would be to use the command kvm-ok.
 I issue this (kvm -ok)command on my system as well and discovered that I was missing some packages (cpu checker). I had to install this package first in order to be able to run the kvm-ok command (see the screenshot below).
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/ced29a03-9bcb-4723-8c85-c3d139eb2681)
  
 
 Note :
@@ -33,6 +36,7 @@ egrep -c ‘lm’ /proc/cpuinfo
 
 If the output is 0, you are not using a 64-bit CPU. If the Output is 1 or greater, you are running
 64-bit CPU and can proceed with the KVM installation
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/16305fda-bf4b-411d-8d12-d729ff97dbb9)
 
 
 Note: For your information, you can have kvm installed on a 32-bit system but will be then able to run only 32-bit guests
@@ -41,6 +45,7 @@ Verifying that Operating system version
 
 Using the system monitor interface or system details in ubuntu 12.04 , you can easily check that the operating system you are running is 32-bit or 64-bit. Whatever the desktop interface you are running, type in the dash/activities, system and select system monitor. In the sytem tab, you can see the version of the operating system.
 For the geek, you can also using the command line and digit the following command line (see screenshot)
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/09634f29-c010-4d7a-8525-d4df509e3b54)
 
 
 If the output is something like x86_x64, you are running a 64-bit
@@ -48,10 +53,8 @@ If the output is something like x86_x64, you are running a 64-bit
 Installating KVM packages
 If you reach this section, we assume that you meet the basic requirements in order to have KVM software running. It’s time to download and install the kvm packages. With Ubuntu, this is quite easy. You can use the Ubuntu software GUI based interface or you can use the command line
 If you prefer to use the GUI,
-•	Launch the Ubuntu Software Center, and in the search box type qemu-kvm. Click on the package.The package is highlighted and you will see two buttons : more and Install. Click
-
-
-on more button.
+•	Launch the Ubuntu Software Center, and in the search box type qemu-kvm. Click on the package.The package is highlighted and you will see two buttons : more and Install. Click on more button.
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/e1efb7bd-dec1-446c-b25c-d84412193823)
 
 
 
@@ -60,7 +63,8 @@ Scroll down and select the 2 additional Add-ons
 You are ready to install the package. Press the Install button (scroll up to see it)
 
 Check that the Bridge-utils package has been installed as well. From the ubuntu Software Center, type in the search box bridge-utils and you should see it already installed. If not, install it
- 
+ ![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/72ce3cd3-7452-4542-bd84-aaf8beaebe7a)
+
  
 If you prefer to use the command line ( slightly faster), simply type the following command and wait for the installation to complete.
 
@@ -73,9 +77,11 @@ You can perform the same installation operation using the command line by issuin
 sudo apt-get install virt-manager
 After the installation complete, you can try to connect to the management interface (by typing in the Dash/activities search box virtual. the application icons will be displayed. Click on it.
  
- 
+ ![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/457bdd3c-8353-424e-b829-78a88c2ba108)
+
 
 The application will start but you will get immediately an error message. (see screenshot)
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/405cb9d1-e2bd-4c9c-b442-488b5dc26aee)
 
 
 Actually, you need to create a new user on your system and to add this user to a specific group (called libvirtd). This will basically grant the right to use the Virt-manager interface. With Ubuntu 12.04, it simply easier to perform the group creation from the command line. By default, Ubuntu
@@ -88,18 +94,26 @@ You will need to logoff and login again in order to have the changes applied. Tr
 
 Creating your First virtual machine
 It’s time to create you first virtual machine on Ubuntu when using KVM as your preferred Hypervisor. At this stage, you have launched the Virtual Machine Manager and you should see a dialog box similar to this one
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/f841ed01-8fb4-4a6f-8b22-fc992408f270)
+
 click on the highlighted computer icon and the New virtual machine wizard starts.
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/fbb9c189-5e39-4535-8201-a463bd89205b)
 
  
 Provide the information and Press Forward.
 In the following screen, select the installation source and the type of virtual machine that you want to install. Press Forward
+
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/de5a93a7-10c5-41e0-9f46-4ecbbc2ed701)
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/d0906c3a-94c9-4dd8-8f20-9ac70aae215e)
 
 
 
 In the next screen, simply specify CPU and Memory information. Press Forward
  
 In the next screen, provide the information about the virtual disk to created and Press Forward
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/b0a22714-ab93-456c-a901-17805f60d713)
 
+![image](https://github.com/knight7080/Ex-05-KVM-Installation-on-Ubuntu/assets/88542035/30442ae2-3350-4899-9ee1-aff4cd4dc576)
 
 
 
